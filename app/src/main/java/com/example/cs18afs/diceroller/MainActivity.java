@@ -8,6 +8,7 @@ import android.support.v7.widget.Toolbar;
 import android.view.View;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.Button;
 import android.widget.Toast;
 
 import java.util.Random;
@@ -31,12 +32,16 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
+        Generate();
+
+    }
+    void Generate(){
         Random r = new Random();
         n1 = r.nextInt();
         n2 = r.nextInt();
-
+        Button btn1 = (Button)findViewById(R.id.btnN1);
+        Button btn2 = (Button)findViewById(R.id.btnN2);
     }
-
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
@@ -61,18 +66,26 @@ public class MainActivity extends AppCompatActivity {
 
     public void on_btn2_click(View view)
     {
-
+        if(n1<=n2)
+            won();
+        else
+            lost();
+        Generate();
     }
 
     public void on_btn1_click(View view)
     {
-
+        if(n1>=n2)
+            won();
+        else
+            lost();
+        Generate();
     }
 
     void won(){
         Toast.makeText(getApplicationContext(),"You Won",Toast.LENGTH_SHORT).show();
     }
     void lost(){
-        Toast.makeText(getApplicationContext(),"You Won",Toast.LENGTH_SHORT).show();
+        Toast.makeText(getApplicationContext(),"You Lost",Toast.LENGTH_SHORT).show();
     }
 }
